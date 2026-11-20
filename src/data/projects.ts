@@ -35,6 +35,15 @@ export const projects: Project[] = [
     outcome: '~40% shorter release cycles',
   },
   {
+    title: 'CyberEx',
+    category: 'Backend · Fintech CMS',
+    description:
+      'Built the CMS backend for a Nigerian wallet and payments fintech’s marketing site — blog, banners, FAQs, testimonials, announcements, metrics and legal pages, all managed from the admin dashboard. Added ~60 documented REST endpoints to an inherited clean-architecture NestJS monolith, with XSS-safe content, queued emails and role-based permissions.',
+    href: 'https://cyberextech.com/',
+    tags: ['NestJS', 'Prisma', 'BullMQ', 'Cloudflare R2'],
+    outcome: '~60 endpoints · ~90 E2E checks',
+  },
+  {
     title: 'Fileway',
     category: 'Open Source · Storage Engine',
     description:
