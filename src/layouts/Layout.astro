@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = `${site.name} — ${site.role}`, description = site.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: site.role,
+  email: `mailto:${site.email}`,
+  url: canonical,
+  sameAs: site.socials.map((social) => social.href),
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#faf9f7" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(personSchema)}
+    />
+    <script is:inline>
+      document.documentElement.classList.add('reveal-ready');
+    </script>
+  </head>
+  <body class="min-h-screen antialiased">
+    <slot />
+  </body>
+</html>
+
+<script>
+  const revealItems = [...document.querySelectorAll<HTMLElement>('[data-reveal]')];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reducedMotion) {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+  } else {
+    const updateReveals = () => {
+      for (const item of revealItems) {
+        if (item.getBoundingClientRect().top < window.innerHeight - 40) {
+          item.classList.add('is-visible');
+        }
+      }
+    };
+
+    updateReveals();
+    window.addEventListener('scroll', updateReveals, { passive: true });
+    window.addEventListener('resize', updateReveals);
+  }
+</script>

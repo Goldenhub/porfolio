@@ -1,0 +1,180 @@
+---
+import Section from './Section.astro';
+import { site } from '../data/site';
+---
+
+<Section id="contact" index="05" title="Contact" subtitle="Say hello">
+  <div class="grid gap-10 sm:grid-cols-[1fr_1.1fr] sm:gap-16">
+    <div>
+      <h3 class="text-2xl font-semibold tracking-tight text-ink">Have something in mind?</h3>
+      <p class="mt-4 max-w-sm text-sm leading-relaxed text-stone-600">
+        I'm open to backend and systems work, technical direction, and conversations about
+        product problems worth solving.
+      </p>
+      <div class="mt-7 flex flex-wrap items-center gap-3">
+        <a
+          href={`mailto:${site.email}`}
+          class="border-b border-accent text-base text-ink transition-colors hover:text-accent sm:text-lg"
+        >
+          {site.email}
+        </a>
+        <button
+          type="button"
+          id="copy-email"
+          data-email={site.email}
+          class="rounded-full border border-stone-300 px-3 py-1 text-xs text-stone-600 transition-colors hover:border-accent hover:text-accent"
+        >
+          Copy
+        </button>
+        <span id="copy-status" role="status" aria-live="polite" class="text-xs text-stone-600"></span>
+      </div>
+      <p class="mt-3 text-xs text-stone-600">I usually reply within 1–2 business days.</p>
+      <div class="mt-8 flex flex-wrap gap-6 text-sm">
+        {
+          site.socials.map((social) => (
+            <a
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-stone-600 transition-colors hover:text-accent"
+            >
+              {social.label} <span aria-hidden="true">↗</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <form id="contact-form" method="post" action="/contact" class="space-y-4">
+      <div class="grid gap-4 sm:grid-cols-2">
+        <label class="block">
+          <span class="font-mono text-[11px] uppercase tracking-wider text-stone-500">Name</span>
+          <input
+            required
+            name="name"
+            autocomplete="name"
+            maxlength="120"
+            class="mt-2 w-full rounded-lg border border-stone-300 bg-white/70 px-3 py-2.5 text-sm text-ink placeholder:text-stone-500 focus:border-accent focus:outline-none"
+            placeholder="Your name"
+          />
+        </label>
+        <label class="block">
+          <span class="font-mono text-[11px] uppercase tracking-wider text-stone-500">Email</span>
+          <input
+            required
+            type="email"
+            name="email"
+            autocomplete="email"
+            maxlength="200"
+            class="mt-2 w-full rounded-lg border border-stone-300 bg-white/70 px-3 py-2.5 text-sm text-ink placeholder:text-stone-500 focus:border-accent focus:outline-none"
+            placeholder="you@example.com"
+          />
+        </label>
+      </div>
+
+      <label class="block">
+        <span class="font-mono text-[11px] uppercase tracking-wider text-stone-500">Topic</span>
+        <select
+          name="topic"
+          class="mt-2 w-full rounded-lg border border-stone-300 bg-white/70 px-3 py-2.5 text-sm text-ink focus:border-accent focus:outline-none"
+        >
+          <option value="">Select a topic</option>
+          <option value="Product or platform build">Product or platform build</option>
+          <option value="Backend or systems work">Backend or systems work</option>
+          <option value="Technical direction">Technical direction</option>
+          <option value="Something else">Something else</option>
+        </select>
+      </label>
+
+      <label class="block">
+        <span class="font-mono text-[11px] uppercase tracking-wider text-stone-500">Message</span>
+        <textarea
+          required
+          name="message"
+          rows="5"
+          maxlength="5000"
+          class="mt-2 w-full resize-y rounded-lg border border-stone-300 bg-white/70 px-3 py-2.5 text-sm text-ink placeholder:text-stone-500 focus:border-accent focus:outline-none"
+          placeholder="Tell me a little about what you have in mind"
+        ></textarea>
+      </label>
+
+      <div class="absolute -left-[9999px]" aria-hidden="true">
+        <label>
+          Company
+          <input name="company" tabindex="-1" autocomplete="off" />
+        </label>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-4">
+        <button
+          type="submit"
+          class="inline-flex items-center rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-accent disabled:cursor-wait disabled:opacity-60"
+        >
+          Send message
+        </button>
+        <p id="contact-status" role="status" aria-live="polite" class="text-sm text-stone-500"></p>
+      </div>
+
+      <noscript>
+        <p class="text-xs text-stone-500">
+          JavaScript is off — your message will still be sent with a standard form submission.
+        </p>
+      </noscript>
+    </form>
+  </div>
+</Section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('contact-status') as HTMLElement | null;
+
+  if (form && status) {
+    const successMessage = 'Thanks — your message is on its way.';
+
+    if (new URLSearchParams(window.location.search).get('sent') === '1') {
+      status.textContent = successMessage;
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+      status.textContent = 'Sending…';
+
+      try {
+        const payload = Object.fromEntries(new FormData(form).entries());
+        const response = await fetch('/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) throw new Error('Form submission failed');
+
+        form.reset();
+        status.textContent = successMessage;
+      } catch {
+        status.textContent = 'Something went wrong. Please email me directly instead.';
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
+    });
+  }
+
+  const copyButton = document.getElementById('copy-email') as HTMLButtonElement | null;
+  const copyStatus = document.getElementById('copy-status') as HTMLElement | null;
+
+  if (copyButton && copyStatus) {
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(copyButton.dataset.email ?? '');
+        copyStatus.textContent = 'Copied';
+        window.setTimeout(() => {
+          copyStatus.textContent = '';
+        }, 2000);
+      } catch {
+        copyStatus.textContent = 'Copy failed — select the address instead.';
+      }
+    });
+  }
+</script>

@@ -1,0 +1,40 @@
+---
+import Section from './Section.astro';
+import { background } from '../data/background';
+---
+
+<Section id="background" index="03" title="Background" subtitle="A short timeline">
+  <p class="mb-8 max-w-xl text-sm text-stone-600">
+    A few teams I've worked with — and the problems I was brought in to solve.
+  </p>
+  <ol class="border-y border-stone-200">
+    {
+      background.map((entry) => (
+        <li
+          class="grid gap-2 border-b border-stone-200 py-6 last:border-b-0 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-8"
+        >
+          <div>
+            <h3 class="text-lg font-semibold tracking-tight text-ink">
+              {entry.role}
+              <span class="px-1 text-stone-500" aria-hidden="true">/</span>
+              {entry.companyHref ? (
+                <a
+                  href={entry.companyHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-accent"
+                >
+                  {entry.company}
+                </a>
+              ) : (
+                entry.company
+              )}
+            </h3>
+            <p class="mt-1 text-sm text-stone-600">{entry.focus}</p>
+          </div>
+          <p class="font-mono text-xs text-stone-600">{entry.period}</p>
+        </li>
+      ))
+    }
+  </ol>
+</Section>

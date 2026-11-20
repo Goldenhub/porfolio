@@ -1,0 +1,25 @@
+---
+interface Props {
+  id: string;
+  index: string;
+  title: string;
+  subtitle?: string;
+}
+
+const { id, index, title, subtitle } = Astro.props;
+---
+
+<section id={id} class="scroll-mt-20 border-t border-stone-200 py-16 sm:py-24">
+  <div class="mx-auto max-w-5xl px-5 sm:px-8">
+    <div class="mb-10 flex flex-wrap items-baseline gap-x-5 gap-y-1 sm:mb-14">
+      <span class="font-mono text-xs text-stone-600">{index}</span>
+      <h2 class="font-display text-3xl font-normal leading-none tracking-tight text-ink sm:text-4xl">
+        {title}
+      </h2>
+      {subtitle && <p class="text-sm text-stone-500 sm:ml-auto">{subtitle}</p>}
+    </div>
+    <div data-reveal>
+      <slot />
+    </div>
+  </div>
+</section>

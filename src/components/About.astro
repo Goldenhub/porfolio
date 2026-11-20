@@ -1,0 +1,30 @@
+---
+import Section from './Section.astro';
+import { site } from '../data/site';
+---
+
+<Section id="about" index="02" title="About" subtitle="A little context">
+  <div class="grid gap-6 sm:grid-cols-[160px_1fr] sm:gap-12">
+    <p class="font-mono text-xs uppercase tracking-wider text-stone-600">Focus</p>
+    <div class="space-y-5 text-sm leading-relaxed text-stone-600">
+      <p class="text-lg leading-relaxed text-ink">
+        I'm a backend engineer first — drawn to the parts of a product you don't see: the data
+        model, the API contract, the pipeline, the failure mode at 2am.
+      </p>
+      <p>
+        I start with the business requirement rather than the tech stack. What decision does this
+        enable? What does the use case actually look like? What does “correct” mean in production,
+        and what will it cost to run? Then I design the system — and step across the stack when the
+        product needs it.
+      </p>
+      <p>
+        That's taken me across WhatsApp commerce, utility payments, fintech and healthcare:
+        architecting event-driven flows, owning production support, partnering with product and
+        design teams, and mentoring 80+ developers along the way.
+      </p>
+      <p class="border-l-2 border-accent/60 pl-4 font-mono text-xs leading-relaxed text-stone-600">
+        {site.currently}
+      </p>
+    </div>
+  </div>
+</Section>
