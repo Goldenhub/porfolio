@@ -41,7 +41,7 @@ Required environment variables:
 | `CONTACT_TO_EMAIL` | Address that receives messages |
 | `CONTACT_FROM_EMAIL` | Optional verified sender, e.g. `Portfolio <hello@yourdomain.com>` |
 
-With Resend's free tier, either verify your own domain as a sender or use `onboarding@resend.dev` and confirm the recipient address.
+With Resend's free tier, `onboarding@resend.dev` can only send to the email address registered on your Resend account — there is no separate recipient confirmation step. To send to any other address, verify your own domain at resend.com/domains and set `CONTACT_FROM_EMAIL` to an address on that domain.
 
 To test locally:
 
