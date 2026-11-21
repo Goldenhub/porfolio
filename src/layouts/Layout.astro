@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
+import ScrollDial from '../components/ScrollDial.astro';
 
 interface Props {
   title?: string;
@@ -75,6 +76,7 @@ const personSchema = {
     </script>
   </head>
   <body class="min-h-screen antialiased">
+    <ScrollDial />
     <slot />
   </body>
 </html>

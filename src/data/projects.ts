@@ -17,7 +17,6 @@ export const projects: Project[] = [
       'A WhatsApp-native grocery platform that turns typed or photographed shopping lists into priced, paid and delivered orders, with automated customer updates and streamlined picker, rider and admin workflows.',
     href: 'https://marrket.africa',
     tags: ['WhatsApp Business API', 'OCR', 'Payments', 'Operations'],
-    outcome: '98% zero-touch automation',
     featured: true,
   },
   {
@@ -42,10 +41,9 @@ export const projects: Project[] = [
     title: 'CyberEx',
     category: 'Backend · Fintech CMS',
     description:
-      'Built the CMS backend for a Nigerian wallet and payments fintech’s marketing site: blog, banners, FAQs, testimonials, announcements, metrics and legal pages, all managed from the admin dashboard. Added ~60 documented REST endpoints to an inherited clean-architecture NestJS monolith, with XSS-safe content, queued emails and role-based permissions.',
+      'Built the CMS backend for a Nigerian wallet and payments fintech’s marketing site: blog, banners, FAQs, testimonials, announcements, metrics and legal pages, all managed from the admin dashboard. Extended an inherited clean-architecture NestJS monolith with XSS-safe content, queued emails and role-based permissions.',
     href: 'https://cyberextech.com/',
     tags: ['NestJS', 'Prisma', 'BullMQ', 'Cloudflare R2'],
-    outcome: '~60 endpoints · ~90 E2E checks',
     featured: true,
   },
   {
