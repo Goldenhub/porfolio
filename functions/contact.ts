@@ -86,7 +86,7 @@ export async function onRequestPost(context: {
       from: env.CONTACT_FROM_EMAIL ?? 'Portfolio Contact <onboarding@resend.dev>',
       to: [env.CONTACT_TO_EMAIL],
       reply_to: email,
-      subject: topic ? `Portfolio — ${topic} — ${name}` : `Portfolio message from ${name}`,
+      subject: topic ? `Portfolio - ${topic} - ${name}` : `Portfolio message from ${name}`,
       text: `From: ${name} <${email}>\nTopic: ${topic || 'Not specified'}\n\n${message}`,
     }),
   });

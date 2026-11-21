@@ -46,7 +46,7 @@ const others = projects.filter((project) => !project.featured);
           </p>
 
           <div class="mt-auto flex flex-wrap gap-1.5 pt-5">
-            {project.tags.slice(0, 3).map((tag) => (
+            {project.tags.map((tag) => (
               <span class="rounded-full border border-stone-200 px-2.5 py-1 text-[11px] text-stone-500">
                 {tag}
               </span>
@@ -73,6 +73,15 @@ const others = projects.filter((project) => !project.featured);
                 {project.title}
               </span>
               <span class="mt-0.5 block text-sm text-stone-600">{project.brief}</span>
+              <span class="mt-2 flex flex-wrap gap-1.5">
+                {
+                  project.tags.map((tag) => (
+                    <span class="rounded-full border border-stone-200 px-2 py-0.5 text-[10px] text-stone-500">
+                      {tag}
+                    </span>
+                  ))
+                }
+              </span>
             </span>
             <span class="flex shrink-0 items-center gap-4">
               {project.outcome && (

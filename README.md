@@ -1,4 +1,4 @@
-# Portfolio — Chibueze Golden Azubuike
+# Portfolio - Chibueze Golden Azubuike
 
 A single-page portfolio built with [Astro](https://astro.build) and Tailwind CSS, deployed on Cloudflare Pages.
 
@@ -41,7 +41,7 @@ Required environment variables:
 | `CONTACT_TO_EMAIL` | Address that receives messages |
 | `CONTACT_FROM_EMAIL` | Optional verified sender, e.g. `Portfolio <hello@yourdomain.com>` |
 
-With Resend's free tier, `onboarding@resend.dev` can only send to the email address registered on your Resend account — there is no separate recipient confirmation step. To send to any other address, verify your own domain at resend.com/domains and set `CONTACT_FROM_EMAIL` to an address on that domain.
+With Resend's free tier, `onboarding@resend.dev` can only send to the email address registered on your Resend account. There is no separate recipient confirmation step. To send to any other address, verify your own domain at resend.com/domains and set `CONTACT_FROM_EMAIL` to an address on that domain.
 
 To test locally:
 

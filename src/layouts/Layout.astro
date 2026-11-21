@@ -7,7 +7,7 @@ interface Props {
   description?: string;
 }
 
-const { title = `${site.name} — ${site.role}`, description = site.description } = Astro.props;
+const { title = `${site.name} - ${site.role}`, description = site.description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
 const personSchema = {
   '@context': 'https://schema.org',

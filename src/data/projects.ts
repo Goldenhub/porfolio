@@ -33,17 +33,16 @@ export const projects: Project[] = [
     title: 'Billkit',
     category: 'Payments & Back-Office Infrastructure',
     description:
-      'Utility payments infrastructure — automated processing, instant confirmations and back-office tracking, with CI/CD and production support built in.',
+      'Utility payments infrastructure: automated processing, instant confirmations and back-office tracking, with CI/CD and production support built in.',
     href: 'https://usebillkit.com',
     tags: ['Payments', 'Automation', 'Back office'],
-    outcome: '~40% shorter release cycles',
     brief: 'Utility payments infrastructure and back-office tracking',
   },
   {
     title: 'CyberEx',
     category: 'Backend · Fintech CMS',
     description:
-      'Built the CMS backend for a Nigerian wallet and payments fintech’s marketing site — blog, banners, FAQs, testimonials, announcements, metrics and legal pages, all managed from the admin dashboard. Added ~60 documented REST endpoints to an inherited clean-architecture NestJS monolith, with XSS-safe content, queued emails and role-based permissions.',
+      'Built the CMS backend for a Nigerian wallet and payments fintech’s marketing site: blog, banners, FAQs, testimonials, announcements, metrics and legal pages, all managed from the admin dashboard. Added ~60 documented REST endpoints to an inherited clean-architecture NestJS monolith, with XSS-safe content, queued emails and role-based permissions.',
     href: 'https://cyberextech.com/',
     tags: ['NestJS', 'Prisma', 'BullMQ', 'Cloudflare R2'],
     outcome: '~60 endpoints · ~90 E2E checks',
@@ -53,11 +52,11 @@ export const projects: Project[] = [
     title: 'Fileway',
     category: 'Open Source · Storage Engine',
     description:
-      'A zero-dependency storage engine for TypeScript runtimes built directly on Web Standards primitives (WHATWG Streams and Web Crypto), with streaming file operations, cryptographic integrity and cross-runtime portability.',
+      'Store files on local disk, Amazon S3, Cloudflare R2, Google Cloud Storage, Azure Blob, Supabase or Cloudinary through one small TypeScript API, without writing provider-specific code. Fileway is a zero-dependency storage engine built on Web Standards, with streaming operations and integrity checks.',
     href: 'https://usefileway.dev',
     tags: ['TypeScript', 'Web Standards', 'Open source'],
     outcome: 'Zero dependencies',
-    brief: 'Zero-dependency storage engine built on Web Standards',
+    brief: 'One API for local, S3/R2, GCS, Azure, Supabase and Cloudinary storage',
   },
   {
     title: 'Mongeesy',
@@ -65,7 +64,7 @@ export const projects: Project[] = [
     description:
       'A zero-setup, browser-native playground for learning MongoDB. Write queries and aggregation pipelines, see results instantly, and practice document modelling without any database setup.',
     href: 'https://mongeesy.vercel.app',
-    tags: ['MongoDB', 'Learning', 'Browser'],
+    tags: ['MongoDB', 'Learning', 'In-browser MongoDB shell'],
     outcome: 'Zero setup',
     brief: 'Browser-native playground for learning MongoDB queries',
   },
@@ -73,7 +72,7 @@ export const projects: Project[] = [
     title: 'Amysos Holdings',
     category: 'Corporate Web Platform · Prena Resources Limited',
     description:
-      'Led the build for Prena Resources Limited from technical direction through deployment — Next.js and Sanity CMS with technical SEO baked in.',
+      'Led the build for Prena Resources Limited from technical direction through deployment using Next.js and Sanity CMS, with technical SEO baked in.',
     href: 'https://amysosholdings.org',
     tags: ['Lead developer', 'Next.js', 'Sanity CMS', 'Technical SEO'],
     brief: 'Next.js and Sanity CMS platform for Prena Resources',
