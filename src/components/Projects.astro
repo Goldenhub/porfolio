@@ -1,6 +1,9 @@
 ---
 import Section from './Section.astro';
 import { projects } from '../data/projects';
+
+const featured = projects.filter((project) => project.featured);
+const others = projects.filter((project) => !project.featured);
 ---
 
 <Section id="work" index="01" title="Selected work" subtitle="Products & open source">
@@ -10,14 +13,14 @@ import { projects } from '../data/projects';
     Worked with <span class="text-ink">Marrket Africa · Billkit · CyberEx · Celebut · Cinfores · Prena Resources</span>
   </p>
 
-  <div class="grid gap-4 sm:grid-cols-2">
+  <div class="grid gap-4 sm:grid-cols-3">
     {
-      projects.map((project, index) => (
+      featured.map((project, index) => (
         <a
           href={project.href}
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex flex-col rounded-xl border border-stone-200 bg-white/60 p-6 transition duration-200 hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-sm"
+          class="group flex flex-col rounded-xl border border-stone-200 bg-white/60 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-sm"
         >
           <div class="flex items-start justify-between gap-4">
             <span class="font-mono text-xs text-stone-600">
@@ -29,7 +32,7 @@ import { projects } from '../data/projects';
             <span class="sr-only">Opens in a new tab</span>
           </div>
 
-          <h3 class="mt-5 text-xl font-semibold tracking-tight text-ink">{project.title}</h3>
+          <h3 class="mt-4 text-lg font-semibold tracking-tight text-ink">{project.title}</h3>
           <p class="mt-1 text-[11px] uppercase tracking-wider text-accent">{project.category}</p>
           {
             project.outcome && (
@@ -38,10 +41,12 @@ import { projects } from '../data/projects';
               </p>
             )
           }
-          <p class="mt-4 flex-1 text-sm leading-relaxed text-stone-600">{project.description}</p>
+          <p class="mt-3 line-clamp-2 text-sm leading-relaxed text-stone-600">
+            {project.description}
+          </p>
 
-          <div class="mt-6 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
+          <div class="mt-auto flex flex-wrap gap-1.5 pt-5">
+            {project.tags.slice(0, 3).map((tag) => (
               <span class="rounded-full border border-stone-200 px-2.5 py-1 text-[11px] text-stone-500">
                 {tag}
               </span>
@@ -50,5 +55,39 @@ import { projects } from '../data/projects';
         </a>
       ))
     }
+  </div>
+
+  <div class="mt-8">
+    <h3 class="mb-2 font-mono text-[11px] uppercase tracking-wider text-stone-500">Also built</h3>
+    <div class="border-y border-stone-200">
+      {
+        others.map((project) => (
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center justify-between gap-4 border-b border-stone-200 py-4 last:border-b-0"
+          >
+            <span class="min-w-0">
+              <span class="font-medium text-ink transition-colors group-hover:text-accent">
+                {project.title}
+              </span>
+              <span class="mt-0.5 block text-sm text-stone-600">{project.brief}</span>
+            </span>
+            <span class="flex shrink-0 items-center gap-4">
+              {project.outcome && (
+                <span class="hidden font-mono text-[11px] text-accent sm:inline">
+                  {project.outcome}
+                </span>
+              )}
+              <span class="text-stone-500 transition-colors group-hover:text-accent" aria-hidden="true">
+                ↗
+              </span>
+            </span>
+            <span class="sr-only">Opens in a new tab</span>
+          </a>
+        ))
+      }
+    </div>
   </div>
 </Section>

@@ -1,0 +1,157 @@
+---
+// Theme control: Light / Dark / System (system is the default).
+---
+
+<div class="relative" data-theme-menu>
+  <button
+    type="button"
+    data-theme-trigger
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-label="Color theme"
+    title="Color theme"
+    class="flex h-8 items-center gap-1 rounded-full border border-stone-300 px-2 text-stone-600 transition-colors hover:border-accent hover:text-accent"
+  >
+    <span data-theme-current-icon class="flex h-4 w-4 items-center justify-center">
+      <svg data-theme-icon="light" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+      </svg>
+      <svg data-theme-icon="dark" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+      <svg data-theme-icon="system" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" />
+      </svg>
+    </span>
+    <svg class="h-3 w-3 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  </button>
+
+  <div
+    data-theme-options
+    role="group"
+    aria-label="Choose a color theme"
+    class="absolute right-0 top-full z-50 mt-2 hidden w-36 rounded-xl border border-stone-200 bg-paper p-1 shadow-lg"
+  >
+    <button
+      type="button"
+      data-theme-value="light"
+      aria-pressed="false"
+      class="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm text-stone-600 transition-colors hover:bg-stone-100 hover:text-ink"
+    >
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+      </svg>
+      <span class="flex-1">Light</span>
+      <svg data-theme-check class="h-3.5 w-3.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
+    </button>
+    <button
+      type="button"
+      data-theme-value="dark"
+      aria-pressed="false"
+      class="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm text-stone-600 transition-colors hover:bg-stone-100 hover:text-ink"
+    >
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+      <span class="flex-1">Dark</span>
+      <svg data-theme-check class="h-3.5 w-3.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
+    </button>
+    <button
+      type="button"
+      data-theme-value="system"
+      aria-pressed="false"
+      class="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm text-stone-600 transition-colors hover:bg-stone-100 hover:text-ink"
+    >
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" />
+      </svg>
+      <span class="flex-1">System</span>
+      <svg data-theme-check class="h-3.5 w-3.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'portfolio-theme';
+  const root = document.documentElement;
+  const menu = document.querySelector<HTMLElement>('[data-theme-menu]');
+  const trigger = document.querySelector<HTMLButtonElement>('[data-theme-trigger]');
+  const options = document.querySelector<HTMLElement>('[data-theme-options]');
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-theme-value]')];
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+  const themeMeta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+
+  type Theme = 'light' | 'dark' | 'system';
+
+  function resolveDark(mode: Theme): boolean {
+    return mode === 'dark' || (mode === 'system' && media.matches);
+  }
+
+  function applyTheme(mode: Theme, persist = false) {
+    const dark = resolveDark(mode);
+    root.dataset.theme = mode;
+    root.classList.toggle('dark', dark);
+    root.style.colorScheme = dark ? 'dark' : 'light';
+    themeMeta?.setAttribute('content', dark ? '#141312' : '#faf9f7');
+
+    for (const button of buttons) {
+      button.setAttribute('aria-pressed', String(button.dataset.themeValue === mode));
+    }
+    trigger?.setAttribute(
+      'aria-label',
+      `Color theme: ${mode.charAt(0).toUpperCase()}${mode.slice(1)}`
+    );
+
+    if (persist) {
+      try {
+        localStorage.setItem(STORAGE_KEY, mode);
+      } catch (error) {
+        // Storage can be unavailable in private browsing; the choice still applies for this visit.
+      }
+    }
+  }
+
+  function closeMenu() {
+    options?.classList.add('hidden');
+    trigger?.setAttribute('aria-expanded', 'false');
+  }
+
+  const saved = root.dataset.theme;
+  applyTheme(
+    saved === 'light' || saved === 'dark' || saved === 'system' ? saved : 'system'
+  );
+
+  media.addEventListener('change', () => {
+    if (root.dataset.theme === 'system') applyTheme('system');
+  });
+
+  trigger?.addEventListener('click', () => {
+    const willOpen = options?.classList.contains('hidden');
+    options?.classList.toggle('hidden', !willOpen);
+    trigger.setAttribute('aria-expanded', String(willOpen));
+  });
+
+  for (const button of buttons) {
+    button.addEventListener('click', () => {
+      const mode = button.dataset.themeValue;
+      if (mode === 'light' || mode === 'dark' || mode === 'system') {
+        applyTheme(mode, true);
+      }
+      closeMenu();
+    });
+  }
+
+  document.addEventListener('click', (event) => {
+    if (!menu?.contains(event.target as Node)) closeMenu();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+</script>

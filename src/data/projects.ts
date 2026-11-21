@@ -5,6 +5,8 @@ export type Project = {
   href: string;
   tags: string[];
   outcome?: string;
+  featured?: boolean;
+  brief?: string;
 };
 
 export const projects: Project[] = [
@@ -16,6 +18,7 @@ export const projects: Project[] = [
     href: 'https://marrket.africa',
     tags: ['WhatsApp Business API', 'OCR', 'Payments', 'Operations'],
     outcome: '98% zero-touch automation',
+    featured: true,
   },
   {
     title: 'Heirmpire Real Estate',
@@ -24,6 +27,7 @@ export const projects: Project[] = [
       'A fintech platform where investors move from KYC onboarding to funding a wallet, subscribing to project offers and receiving payouts. Behind it sits an admin console with role-based approvals, compliance checks and live transaction monitoring.',
     href: 'https://heirmpire.app',
     tags: ['Fintech', 'KYC', 'RBAC', 'Admin console'],
+    featured: true,
   },
   {
     title: 'Billkit',
@@ -33,6 +37,7 @@ export const projects: Project[] = [
     href: 'https://usebillkit.com',
     tags: ['Payments', 'Automation', 'Back office'],
     outcome: '~40% shorter release cycles',
+    brief: 'Utility payments infrastructure and back-office tracking',
   },
   {
     title: 'CyberEx',
@@ -42,6 +47,7 @@ export const projects: Project[] = [
     href: 'https://cyberextech.com/',
     tags: ['NestJS', 'Prisma', 'BullMQ', 'Cloudflare R2'],
     outcome: '~60 endpoints · ~90 E2E checks',
+    featured: true,
   },
   {
     title: 'Fileway',
@@ -51,6 +57,7 @@ export const projects: Project[] = [
     href: 'https://usefileway.dev',
     tags: ['TypeScript', 'Web Standards', 'Open source'],
     outcome: 'Zero dependencies',
+    brief: 'Zero-dependency storage engine built on Web Standards',
   },
   {
     title: 'Mongeesy',
@@ -60,6 +67,7 @@ export const projects: Project[] = [
     href: 'https://mongeesy.vercel.app',
     tags: ['MongoDB', 'Learning', 'Browser'],
     outcome: 'Zero setup',
+    brief: 'Browser-native playground for learning MongoDB queries',
   },
   {
     title: 'Amysos Holdings',
@@ -68,5 +76,6 @@ export const projects: Project[] = [
       'Led the build for Prena Resources Limited from technical direction through deployment — Next.js and Sanity CMS with technical SEO baked in.',
     href: 'https://amysosholdings.org',
     tags: ['Lead developer', 'Next.js', 'Sanity CMS', 'Technical SEO'],
+    brief: 'Next.js and Sanity CMS platform for Prena Resources',
   },
 ];

@@ -12,6 +12,44 @@
     monospace;
 }
 
+html.dark {
+  --color-paper: #141312;
+  --color-ink: #f5f2ee;
+  --color-accent: #2dd4bf;
+  --color-white: #1c1917;
+
+  --color-stone-50: #1c1917;
+  --color-stone-100: #262320;
+  --color-stone-200: #35312d;
+  --color-stone-300: #4a4540;
+  --color-stone-400: #8b857e;
+  --color-stone-500: #a39d96;
+  --color-stone-600: #c2bcb5;
+  --color-stone-700: #dcd7d1;
+  --color-stone-800: #eae6e1;
+  --color-stone-900: #f5f2ee;
+  --color-stone-950: #faf8f6;
+}
+
+html.dark ::selection {
+  background-color: #115e59;
+  color: #f5f2ee;
+}
+
+[data-theme-current-icon] svg,
+[data-theme-check] {
+  display: none;
+}
+
+html[data-theme='light'] [data-theme-current-icon] [data-theme-icon='light'],
+html[data-theme='dark'] [data-theme-current-icon] [data-theme-icon='dark'],
+html[data-theme='system'] [data-theme-current-icon] [data-theme-icon='system'],
+html[data-theme='light'] [data-theme-value='light'] [data-theme-check],
+html[data-theme='dark'] [data-theme-value='dark'] [data-theme-check],
+html[data-theme='system'] [data-theme-value='system'] [data-theme-check] {
+  display: block;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -40,6 +78,11 @@
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
